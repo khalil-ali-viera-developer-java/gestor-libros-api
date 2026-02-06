@@ -13,6 +13,8 @@ public interface LibroRepository {
 
     Optional<Libro> getByRepository(Long id);
 
+    Optional<Libro> getByRepository(String titulo);
+
     void deleteByRepository(Long id);
 
     Optional<Libro> modifyByRepository(Long id, Libro libro);

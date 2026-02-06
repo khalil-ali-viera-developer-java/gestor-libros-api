@@ -94,6 +94,30 @@ public class LibroServiceImpl implements LibroService {
         return libroOptional.get();
     }
 
+    // getBy(String titulo);
+    @Override
+    public Libro getByService(String titulo) throws LibroNotFoundException {
+
+        // TITULO;
+        if (titulo == null) {
+            throw new IllegalArgumentException("El titulo del libro no puede ser nulo");
+        }
+
+        if (titulo.isBlank()) {
+            throw new IllegalArgumentException("El titulo del libro no puede estar vacio");
+        }
+
+        String tituloSinEspacios = titulo.trim();
+
+        Optional<Libro> optionalLibro = this.libroRepository.getByRepository(tituloSinEspacios);
+        if (optionalLibro.isEmpty()) {
+            throw new LibroNotFoundException("El titulo del libro: " + tituloSinEspacios + " no encontrado");
+        }
+
+        return optionalLibro.get();
+
+    }
+
     // deleteBy(Long id);
     @Override
     public void deleteByService(Long id) throws LibroNotFoundException {

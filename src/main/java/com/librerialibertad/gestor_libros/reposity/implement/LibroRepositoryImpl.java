@@ -44,6 +44,19 @@ public class LibroRepositoryImpl implements LibroRepository {
         return Optional.empty();
     }
 
+    // getBy(String titulo);
+    @Override
+    public Optional<Libro> getByRepository(String titulo) {
+
+        for (Libro libro : this.listaLibros) {
+            if (Objects.equals(libro.getTitulo(), titulo)) {
+                return Optional.of(libro);
+            }
+        }
+
+        return Optional.empty();
+    }
+
     // deleteBy(Long id);
     @Override
     public void deleteByRepository(Long id) {

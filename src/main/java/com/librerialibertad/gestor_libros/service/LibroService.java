@@ -13,6 +13,8 @@ public interface LibroService {
 
     Libro getByService(Long id) throws LibroNotFoundException;
 
+    Libro getByService(String titulo) throws LibroNotFoundException;
+
     void deleteByService(Long id) throws LibroNotFoundException;
 
     Libro modifyByService(Long id, Libro libro) throws LibroNotFoundException;

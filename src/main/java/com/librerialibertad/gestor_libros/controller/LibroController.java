@@ -41,10 +41,23 @@ public class LibroController {
     }
 
     // getBy(Long id);
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<?> getByController(@PathVariable Long id) {
         try {
             Libro libro = this.libroService.getByService(id);
+            return ResponseEntity.ok(libro);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (LibroNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    // getBy(String titulo);
+    @GetMapping("/titulo/{titulo}")
+    public ResponseEntity<?> getByController(@PathVariable String titulo) {
+        try {
+            Libro libro = this.libroService.getByService(titulo);
             return ResponseEntity.ok(libro);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
