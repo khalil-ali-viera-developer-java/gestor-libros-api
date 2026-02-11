@@ -127,13 +127,16 @@ public class LibroServiceImpl implements LibroService {
             throw new IllegalArgumentException("El id del libro no puede ser nulo");
         }
 
-        Optional<Libro> optionalLibro = this.libroRepository.getByRepository(id);
-
-        if (optionalLibro.isEmpty()) {
-            throw new LibroNotFoundException("El libro con el id " + id + " no encontrado");
+        if (id <= 0) {
+            throw new IllegalArgumentException("El id del libro no puede ser 0 ni nulo");
         }
 
-        this.libroRepository.deleteByRepository(id);
+        boolean personaService = this.libroRepository.deleteByRepository(id);
+
+        if (!personaService) {
+            throw new LibroNotFoundException("El libro con id " + id + " no encontrado");
+        }
+
     }
 
     // modifyBy(Long id);
@@ -143,6 +146,10 @@ public class LibroServiceImpl implements LibroService {
         // ID;
         if (id == null) {
             throw new IllegalArgumentException("El id del libro no puede ser nulo");
+        }
+
+        if (id <= 0L) {
+            throw new IllegalArgumentException("El id del libro no puede ser 0 ni negativo");
         }
 
         // LIBRO;

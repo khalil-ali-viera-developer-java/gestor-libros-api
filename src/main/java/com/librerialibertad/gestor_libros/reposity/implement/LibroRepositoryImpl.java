@@ -59,12 +59,15 @@ public class LibroRepositoryImpl implements LibroRepository {
 
     // deleteBy(Long id);
     @Override
-    public void deleteByRepository(Long id) {
+    public boolean deleteByRepository(Long id) {
         Optional<Libro> optionalLibro = this.getByRepository(id);
 
         if (optionalLibro.isPresent()) {
             this.listaLibros.remove(optionalLibro.get());
+            return true;
         }
+
+        return false;
     }
 
     // modifyBy(Long id);

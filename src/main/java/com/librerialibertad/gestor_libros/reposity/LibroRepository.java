@@ -15,7 +15,7 @@ public interface LibroRepository {
 
     Optional<Libro> getByRepository(String titulo);
 
-    void deleteByRepository(Long id);
+    boolean deleteByRepository(Long id);
 
     Optional<Libro> modifyByRepository(Long id, Libro libro);
 }

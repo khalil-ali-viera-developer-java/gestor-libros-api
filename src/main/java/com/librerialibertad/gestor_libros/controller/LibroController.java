@@ -25,7 +25,7 @@ public class LibroController {
     // findAll();
     @GetMapping
     public ResponseEntity<List<Libro>> findAllController() {
-        List<Libro> libros = this.libroService.findAllService();
+        List<Libro> libros = this.libroService.findAllService(); // 200;
         return ResponseEntity.ok(libros);
     }
 
@@ -34,9 +34,9 @@ public class LibroController {
     public ResponseEntity<?> saveController(@RequestBody Libro libro) {
         try {
             Libro libroGuardado = this.libroService.saveService(libro);
-            return ResponseEntity.status(HttpStatus.CREATED).body(libroGuardado);
+            return ResponseEntity.status(HttpStatus.CREATED).body(libroGuardado); // 200;
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage()); // 400;
         }
     }
 
@@ -45,11 +45,11 @@ public class LibroController {
     public ResponseEntity<?> getByController(@PathVariable Long id) {
         try {
             Libro libro = this.libroService.getByService(id);
-            return ResponseEntity.ok(libro);
+            return ResponseEntity.ok(libro); // 200;
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage()); // 400;
         } catch (LibroNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage()); // 404;
         }
     }
 
@@ -58,11 +58,11 @@ public class LibroController {
     public ResponseEntity<?> getByController(@PathVariable String titulo) {
         try {
             Libro libro = this.libroService.getByService(titulo);
-            return ResponseEntity.ok(libro);
+            return ResponseEntity.ok(libro); // 200;
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage()); // 400;
         } catch (LibroNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage()); // 404;
         }
     }
 
@@ -71,11 +71,11 @@ public class LibroController {
     public ResponseEntity<Void> deleteByController(@PathVariable Long id) {
         try {
             this.libroService.deleteByService(id);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.noContent().build(); // 204;
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().build(); // 400;
         } catch (LibroNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // 404;
         }
     }
 
@@ -84,11 +84,11 @@ public class LibroController {
     public ResponseEntity<?> modifyByController(@PathVariable Long id, @RequestBody Libro libro) {
         try {
             Libro libroModifyController = this.libroService.modifyByService(id, libro);
-            return ResponseEntity.ok(libroModifyController);
+            return ResponseEntity.ok(libroModifyController); // 200;
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage()); // 400;
         } catch (LibroNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage()); // 404;
         }
     }
 
